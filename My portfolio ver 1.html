@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mani Prasoon - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Animated Gradient Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #00f0ff, #00ff95, #004fff);
+            background-size: 600% 600%;
+            animation: gradientShift 12s ease infinite;
+            opacity: 0.15;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 50%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Custom Components */
+        .card {
+            transition: all 0.3s ease;
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: none;
+            white-space: nowrap;
+            letter-spacing: .15em;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .skill-bar {
+            width: 0;
+            transition: width 2s ease;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            left: -10px;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+        
+        /* Animated Background Elements */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        /* Hover effects */
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Section transitions */
+        .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                height: 56px !important;
+                min-height: 56px !important;
+            }
+            .h-16 { height: 56px !important; }
+            .max-w-7xl, .max-w-4xl, .max-w-md {
+                max-width: 100vw !important;
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+            .hero-image, .about-image, .w-64, .h-64, .w-72, .h-72, .w-78, .h-78, .w-96, .h-96 {
+                width: 8rem !important;
+                height: 8rem !important;
+                min-width: 8rem !important;
+                min-height: 8rem !important;
+                margin: 0 auto !important;
+            }
+            .flex, .grid, .md\:flex-row, .lg\:flex-row {
+                flex-direction: column !important;
+                grid-template-columns: 1fr !important;
+            }
+            .md\:w-1\/2, .lg\:w-1\/2, .md\:w-2\/3, .lg\:w-1\/3 {
+                width: 100% !important;
+                max-width: 100vw !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+            .px-4, .px-6, .px-8 {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+            .py-20, .py-32 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            .mb-16, .mb-12, .mb-8, .mb-4 {
+                margin-bottom: 1rem !important;
+            }
+            h1, h2, h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.3 !important;
+            }
+            .text-4xl, .text-5xl, .text-6xl {
+                font-size: 1.5rem !important;
+            }
+            .text-2xl, .text-3xl {
+                font-size: 1.125rem !important;
+            }
+            .text-lg {
+                font-size: 1rem !important;
+            }
+            .text-base {
+                font-size: 0.95rem !important;
+            }
+            .card, .bg-white, .dark\:bg-gray-800, .p-6, .p-4, .rounded-xl, .rounded-lg, .shadow-md, .shadow-lg {
+                padding: 1rem !important;
+                border-radius: 0.75rem !important;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+                width: 100% !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+            }
+            .rounded-full {
+                border-radius: 9999px !important;
+            }
+            .w-full {
+                width: 100% !important;
+            }
+            .h-full {
+                height: auto !important;
+            }
+            .space-x-4, .gap-8, .gap-6, .gap-4 {
+                gap: 0.5rem !important;
+            }
+            .form, form, input, textarea, select, button {
+                width: 100% !important;
+                font-size: 1rem !important;
+                min-height: 2.5rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+            button, .rounded-full, .rounded-lg, .rounded-xl {
+                border-radius: 0.75rem !important;
+                min-height: 2.5rem !important;
+            }
+            .floating, .absolute, .relative {
+                position: static !important;
+                transform: none !important;
+                margin: 0 auto !important;
+            }
+            .overflow-hidden, .overflow-x-hidden {
+                overflow-x: hidden !important;
+            }
+            .animated-bg, #particles-js {
+                display: none !important;
+            }
+            .section {
+                min-width: 0 !important;
+                max-width: 100vw !important;
+            }
+            .footer, footer {
+                font-size: 0.95rem !important;
+                padding: 1rem 0.5rem !important;
+                text-align: center !important;
+            }
+        }
+    </style>
+
+<style>
+  #particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+</style>
+</head>
+<body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 overflow-x-hidden">
+    <!-- Animated Gradient Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Background elements -->
+    <div class="bg-element bg-blue-500 w-64 h-64 -top-32 -left-32"></div>
+    <div class="bg-element bg-emerald-500 w-96 h-96 -bottom-64 -right-64"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 dark:bg-gray-800/80 backdrop-filter backdrop-blur-lg shadow-sm dark:shadow-gray-700 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-base lg:text-lg">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#home" class="flex items-center space-x-2">
+                        <img src="https://res.cloudinary.com/ds8fnrk7s/image/upload/v1750510412/logo_new_jwb8qz.png" alt="Mani Prasoon Logo" class="w-8 h-8 object-contain rounded-full bg-white p-1 shadow">
+                        <span class="text-xl font-bold text-blue-500 dark:text-blue-400">Mani Prasoon</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Home</a>
+                    <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">About</a>
+                    <a href="#education" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Education</a>
+                    <a href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Projects</a>
+                    <a href="#experience" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Experience</a>
+                    <a href="#resume" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Resume</a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Contact</a>
+                    <button id="theme-toggle" type="button" class="ml-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                        <svg id="theme-toggle-dark-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="display:none"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="display:none"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zm1.414 12.364A1 1 0 107.88 16.12l-.707.707a1 1 0 001.414 1.414l.707-.707zM3 11a1 1 0 100 2H2a1 1 0 100-2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700 dark:text-gray-300">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden md:hidden"></div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 py-4 px-6 border-t dark:border-gray-700 fixed top-16 left-0 w-full z-50 transition-transform duration-300 transform -translate-y-full">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Home</a>
+                <a href="#about" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">About</a>
+                <a href="#education" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Education</a>
+                <a href="#projects" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Projects</a>
+                <a href="#experience" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Experience</a>
+                <a href="#resume" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Resume</a>
+                <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Contact</a>
+                <button id="theme-toggle-mobile" type="button" class="mt-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-base p-3 w-max self-center">
+                    <svg id="theme-toggle-dark-icon-mobile" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="display:none"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    <svg id="theme-toggle-light-icon-mobile" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" style="display:none"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zm1.414 12.364A1 1 0 107.88 16.12l-.707.707a1 1 0 001.414 1.414l.707-.707zM3 11a1 1 0 100 2H2a1 1 0 100-2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-20 md:py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0 px-4">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Hi, I'm <span class="text-blue-500 dark:text-blue-400">Mani Prasoon</span></h1>
+                <div class="text-2xl md:text-3xl font-semibold mb-6">
+                    <span class="typewriter text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-emerald-500"></span>
+                </div>
+                <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">Computer Science Engineer specializing in AI/ML, Cybersecurity, and Web Development. Passionate about creating innovative solutions to real-world problems.</p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition transform hover:scale-105">Hire Me</a>
+                    <a href="#projects" class="px-6 py-3 border border-blue-500 text-blue-500 dark:border-blue-400 rounded-full font-medium hover:bg-blue-50 dark:hover:bg-blue-900/50 transition transform hover:scale-105">View Work</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 sm:w-72 sm:h-72 md:w-78 md:h-78 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-400 to-emerald-400 flex items-center justify-center shadow-xl floating overflow-hidden">
+                        <img src="https://res.cloudinary.com/ds8fnrk7s/image/upload/v1749486424/profile_2_ivlkxk.jpg" alt="Miryala Mani Prasoon" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-5 -right-5 bg-white dark:bg-gray-700 p-3 rounded-full shadow-lg hover-scale">
+                        <div class="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white text-xl">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                    <div class="absolute -top-5 -left-5 bg-white dark:bg-gray-700 p-3 rounded-full shadow-lg hover-scale">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white text-xl">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-gray-400 hover:text-blue-500 dark:hover:text-blue-400">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-950 section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">About <span class="text-blue-500 dark:text-blue-400">Me</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto"></div>
+            </div>
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/3 mb-8 lg:mb-0 flex justify-center">
+                    <div class="relative px-4">
+                        <div class="w-full max-w-md h-96 rounded-lg overflow-hidden shadow-xl hover-scale">
+                            <img src="https://res.cloudinary.com/ds8fnrk7s/image/upload/v1749486177/profile_copy_wmy1eu.jpg" alt="Miryala Mani Prasoon" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-5 -right-5 bg-white dark:bg-gray-800 p-2 rounded-lg shadow-lg">
+                            <div class="px-4 py-2 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-lg text-white font-medium">
+                                <span>AI/ML</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md mb-8 card">
+                        <h3 class="text-xl font-semibold mb-4">Who am I?</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">I'm Miryala Mani Prasoon, a passionate Computer Science Engineer with expertise in AI/ML, Cybersecurity, and Web Development. I thrive on solving complex problems through innovative technological solutions.</p>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Name:</p>
+                                <p class="font-medium">Miryala Mani Prasoon</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Roll No:</p>
+                                <p class="font-medium">22881A05N8</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Email:</p>
+                                <p class="font-medium">maniprasoonm@gmail.com</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Phone:</p>
+                                <p class="font-medium">+91-8523035354</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-xl font-semibold mb-4">My <span class="text-blue-500 dark:text-blue-400">Skills</span></h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Python -->
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fab fa-python text-2xl text-blue-600 dark:text-blue-400"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium">Python</span>
+                                        <span class="text-gray-500 dark:text-gray-400">90%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar bg-blue-500 h-2.5 rounded-full" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Machine Learning -->
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/50 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-brain text-2xl text-purple-600 dark:text-purple-400"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium">Machine Learning/Deep Learning</span>
+                                        <span class="text-gray-500 dark:text-gray-400">85%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar bg-purple-500 h-2.5 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cloud Computing -->
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900/50 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-cloud text-2xl text-yellow-600 dark:text-yellow-400"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium">Cloud Computing</span>
+                                        <span class="text-gray-500 dark:text-gray-400">85%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar bg-yellow-500 h-2.5 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Web Development -->
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-code text-2xl text-green-600 dark:text-green-400"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium">Web Development(Front-end)</span>
+                                        <span class="text-gray-500 dark:text-gray-400">80%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar bg-green-500 h-2.5 rounded-full" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cryptography -->
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 bg-red-100 dark:bg-red-900/50 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-lock text-2xl text-red-600 dark:text-red-400"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium">Cryptography</span>
+                                        <span class="text-gray-500 dark:text-gray-400">75%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar bg-red-500 h-2.5 rounded-full" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cybersecurity -->
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+                            <div class="flex items-center mb-3">
+                                <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/50 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-shield-alt text-2xl text-indigo-600 dark:text-indigo-400"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between mb-1">
+                                        <span class="font-medium">Cyber Security</span>
+                                        <span class="text-gray-500 dark:text-gray-400">70%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                        <div class="skill-bar bg-indigo-500 h-2.5 rounded-full" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-20 section bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">My <span class="text-blue-500 dark:text-blue-400">Education</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto"></div>
+            </div>
+            
+            <div class="relative pl-8 timeline pb-16 before:bg-blue-500 dark:before:bg-blue-400">
+                <div class="mb-12 timeline-item relative before:bg-blue-500 dark:before:bg-blue-400">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md card">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">2022 - 2026</span>
+                        <h3 class="text-xl font-semibold mt-2 mb-1">Bachelor of Technology in Computer Science and Engineering</h3>
+                        <p class="text-gray-600 dark:text-gray-400 font-medium mb-2">Vardhaman College of Engineering, Shamshabad | JNTUH</p>
+                        <p class="text-gray-500 dark:text-gray-400">Current CGPA: <span class="font-semibold text-blue-500 dark:text-blue-400">9.02</span></p>
+                    </div>
+                </div>
+                
+                <div class="mb-12 timeline-item relative before:bg-blue-500 dark:before:bg-blue-400">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md card">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">2020 - 2022</span>
+                        <h3 class="text-xl font-semibold mt-2 mb-1">Intermediate in MPC</h3>
+                        <p class="text-gray-600 dark:text-gray-400 font-medium mb-2">Valley Oak Junior College, ManiKonda | TGBIE</p>
+                        <p class="text-gray-500 dark:text-gray-400">Percentage: <span class="font-semibold text-blue-500 dark:text-blue-400">98.1%</span></p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item relative before:bg-blue-500 dark:before:bg-blue-400">
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md card">
+                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">2020</span>
+                        <h3 class="text-xl font-semibold mt-2 mb-1">Tenth Class</h3>
+                        <p class="text-gray-600 dark:text-gray-400 font-medium mb-2">Sankalp High School, Nalgonda | BSET</p>
+                        <p class="text-gray-500 dark:text-gray-400">CGPA: <span class="font-semibold text-blue-500 dark:text-blue-400">10.0</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-950 section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">My <span class="text-blue-500 dark:text-blue-400">Projects</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto"></div>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mt-4">Check out some of my remarkable projects that showcase my skills and creativity.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition card">
+                    <div class="bg-blue-100 dark:bg-blue-900/50 p-3 rounded-lg mb-4">
+                        <i class="fas fa-eye text-blue-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">
+                        <a href="https://github.com/maniprasoon/DeepSightDR" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 dark:hover:text-blue-400 transition">
+                            DeepSightDR <i class="fas fa-external-link-alt text-sm ml-1"></i>
+                        </a>
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Deep learning powered diabetic retinopathy detection</p>
+                    <ul class="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-emerald-500 mt-1 mr-2"></i>
+                            <span>Built high-accuracy (93–95%) deep learning model using InceptionV3/V2</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-emerald-500 mt-1 mr-2"></i>
+                            <span>Leveraged Google Colab and Google Drive for distributed training</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-emerald-500 mt-1 mr-2"></i>
+                            <span>Advanced data preprocessing and augmentation</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs px-3 py-1 rounded-full">TensorFlow</span>
+                        <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Keras</span>
+                        <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300 text-xs px-3 py-1 rounded-full">Google Colab</span>
+                    </div>
+                </div>
+                
+                <!-- New Project: Maltego Email Investigation -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition card">
+                    <div class="bg-red-100 dark:bg-red-900/50 p-3 rounded-lg mb-4">
+                        <i class="fas fa-shield-alt text-red-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">
+                        <a href="https://github.com/maniprasoon/Investigating-Malicious-Emails-Using-Maltego" target="_blank" rel="noopener noreferrer" class="hover:text-red-500 dark:hover:text-red-400 transition">
+                            Investigating Malicious Emails Using Maltego <i class="fas fa-external-link-alt text-sm ml-1"></i>
+                        </a>
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Cyber Threat Intelligence and Email Analysis</p>
+                    <ul class="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-red-500 mt-1 mr-2"></i>
+                            <span>Leveraged Maltego for cyber threat intelligence by tracing malicious email origins</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-red-500 mt-1 mr-2"></i>
+                            <span>Initiated PoI investigations from email entities, applied transforms, performed footprinting</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-red-500 mt-1 mr-2"></i>
+                            <span>Analyzed collected data to uncover attacker infrastructure and created detailed threat reports</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 text-xs px-3 py-1 rounded-full">Maltego</span>
+                        <span class="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 text-xs px-3 py-1 rounded-full">Cyber Threat Intelligence</span>
+                        <span class="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 text-xs px-3 py-1 rounded-full">Email Analysis</span>
+                        <span class="bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300 text-xs px-3 py-1 rounded-full">OSINT</span>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition card">
+                    <div class="bg-emerald-100 dark:bg-emerald-900/50 p-3 rounded-lg mb-4">
+                        <i class="fas fa-lock text-emerald-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">
+                        <a href="https://github.com/maniprasoon/A-BIO-CRYPTOGRAPHIC-APPROACH-TO-AES-KEY-GENERATION-USING-RANDOMIZED-DNA-GENES-AND-BINARY-ENCODING" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 dark:hover:text-blue-400 transition">
+                            A Bio-Cryptographic Approach to AES Key Generation Using Randomized DNA Motifs and Binary Encoding <i class="fas fa-external-link-alt text-sm ml-1"></i>
+                        </a>
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">AES Key Generation Using Randomized DNA Motifs</p>
+                    <ul class="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-emerald-500 mt-1 mr-2"></i>
+                            <span>Engineered secure AES-256 key generation method in Python</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-emerald-500 mt-1 mr-2"></i>
+                            <span>Integrated random DNA subsequences with 6-bit binary identifiers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-emerald-500 mt-1 mr-2"></i>
+                            <span>Developed AES-CBC encryption/decryption with padding</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300 text-xs px-3 py-1 rounded-full">Cryptography</span>
+                        <span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300 text-xs px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300 text-xs px-3 py-1 rounded-full">SHA-256</span>
+                        <span class="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300 text-xs px-3 py-1 rounded-full">AES-256</span>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition card">
+                    <div class="bg-purple-100 dark:bg-purple-900/50 p-3 rounded-lg mb-4">
+                        <i class="fab fa-aws text-purple-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">
+                        <a href="https://github.com/maniprasoon/Hosting-Website-using-Amazon-S3-and-accelerate-content-delivery-using-Cloudfont-in-AWS" target="_blank" rel="noopener noreferrer" class="hover:text-blue-500 dark:hover:text-blue-400 transition">
+                            Hosting Website using Amazon S3 and accelerate content delivery using
+ Cloudfont in AWS <i class="fas fa-external-link-alt text-sm ml-1"></i>
+                        </a>
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">AWS</p>
+                    <ul class="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-emerald-500 mt-1 mr-2"></i>
+                            <span>Hosted a static website using Amazon S3 and accelerated delivery with CloudFront. </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-emerald-500 mt-1 mr-2"></i>
+                            <span>Enabled HTTPS with SSL via AWS Certificate Manager. </span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-emerald-500 mt-1 mr-2"></i>
+                            <span>Implemented caching, versioning, and cache invalidation for performance.</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 text-xs px-3 py-1 rounded-full">Cloudfront</span>
+                        <span class="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 text-xs px-3 py-1 rounded-full">S3</span>
+                        <span class="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300 text-xs px-3 py-1 rounded-full">AWS</span>
+                    </div>
+                </div>
+
+                <!-- New Project: To-Do List -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition card">
+                    <div class="bg-green-100 dark:bg-green-900/50 p-3 rounded-lg mb-4">
+                        <i class="fas fa-tasks text-green-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">
+                        <a href="https://github.com/maniprasoon/TO-DO-List" target="_blank" rel="noopener noreferrer" class="hover:text-green-500 dark:hover:text-green-400 transition">
+                            Interactive To-Do List Application <i class="fas fa-external-link-alt text-sm ml-1"></i>
+                        </a>
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Web-based Task Management System</p>
+                    <ul class="space-y-2 mb-4 text-sm text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Developed a modern web application for efficient task management with CRUD operations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Implemented real-time task counters and dynamic updates for seamless user experience</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Created an intuitive interface with smooth animations and interactive hover effects</span>
+                        </li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 text-xs px-3 py-1 rounded-full">HTML5</span>
+                        <span class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 text-xs px-3 py-1 rounded-full">CSS3</span>
+                        <span class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 text-xs px-3 py-1 rounded-full">JavaScript</span>
+                        <span class="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300 text-xs px-3 py-1 rounded-full">Web Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 section bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">My <span class="text-blue-500 dark:text-blue-400">Experience</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Internship 1 -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-emerald-500 flex items-center justify-center text-white text-2xl font-bold">
+                            NI
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold">AI and ML Intern</h3>
+                            <p class="text-gray-600 dark:text-gray-400">NIELIT, Chennai | Aug - Oct 2024</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Designed AI-driven calorie prediction system using Python algorithms (XGBoost, Random Forest)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Conducted data preprocessing including cleaning, normalization, and encoding</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-blue-500 mt-1 mr-2"></i>
+                            <span>Delivered insights into personalized fitness management</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Internship 2 -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition card">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-2xl font-bold">
+                            VA
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold">AI Intern | Summer of AI 2025 (Ongoing)</h3>
+                            <p class="text-gray-600 dark:text-gray-400">Viswam.AI | May 2025 - Present</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Developing foundational Telugu language models</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Completed modules: Python Fundamentals, Advanced Python, and Introduction to AI</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-purple-500 mt-1 mr-2"></i>
+                            <span>Hands-on projects with transformer architectures and RAG</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Certifications -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition card">
+                    <h3 class="text-xl font-semibold mb-4">Certifications</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="bg-blue-100 dark:bg-gray-700 p-2 rounded-full mr-3">
+                                <i class="fas fa-certificate text-blue-500 dark:text-blue-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">LinguaSkill, Cambridge English</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">July 2023</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-emerald-100 dark:bg-gray-700 p-2 rounded-full mr-3">
+                                <i class="fas fa-certificate text-emerald-500 dark:text-emerald-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Front End Web Developer Certification, Infosys Springboard</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400"> April 2025</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-purple-100 dark:bg-gray-700 p-2 rounded-full mr-3">
+                                <i class="fas fa-certificate text-purple-500 dark:text-purple-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Cloud Foundations, AWS Academy</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">April 2025</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Achievements -->
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition card">
+                    <h3 class="text-xl font-semibold mb-4">Achievements</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <div class="bg-yellow-100 dark:bg-gray-700 p-2 rounded-full mr-3">
+                                <i class="fas fa-trophy text-yellow-500 dark:text-yellow-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">B2 proficiency in English through Cambridge Linguaskill Certification</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-red-100 dark:bg-gray-700 p-2 rounded-full mr-3">
+                                <i class="fas fa-medal text-red-500 dark:text-red-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Published research article: "A Bio-Cryptographic Approach to AES Key Generation Using Randomized DNA Motifs and Binary
+ Encoding"</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="bg-indigo-100 dark:bg-gray-700 p-2 rounded-full mr-3">
+                                <i class="fas fa-award text-indigo-500 dark:text-indigo-400"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Completed Gen AI mega workshop 2.0, Nxtwave</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">September 2024</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="py-20 bg-gray-50 dark:bg-gray-950 section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4">My <span class="text-blue-500 dark:text-blue-400">Resume</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto mb-4"></div>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">You can view or download my latest resume below.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <a href="https://drive.google.com/file/d/1GxHN0z-N42vsrTw3IU8R-tQjNkPZHXaP/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="mb-6 px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition transform hover:scale-105">View / Download Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-100 dark:bg-gray-900 section">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Get In <span class="text-blue-500 dark:text-blue-400">Touch</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto"></div>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4">Feel free to reach out for collaborations or just to say hello!</p>
+            </div>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-xl font-semibold mb-4">Contact <span class="text-blue-500 dark:text-blue-400">Information</span></h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-blue-500 p-3 rounded-full mr-4 text-white">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p class="text-gray-600 dark:text-gray-400">maniprasoonm@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-emerald-500 p-3 rounded-full mr-4 text-white">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Phone</h4>
+                                <p class="text-gray-600 dark:text-gray-400">+91-8523035354</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-500 p-3 rounded-full mr-4 text-white">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Location</h4>
+                                <p class="text-gray-600 dark:text-gray-400">Hyderabad, India</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold mt-8 mb-4">Follow <span class="text-blue-500 dark:text-blue-400">Me</span></h3>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/maniprasoon" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-gray-200 dark:bg-gray-800 hover:bg-blue-500 text-gray-800 dark:text-gray-200 hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mani-prasoon-miryala/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-gray-200 dark:bg-gray-800 hover:bg-blue-700 text-gray-800 dark:text-gray-200 hover:text-white rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="block mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-blue-500 transition">
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-2">Your Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-blue-500 transition">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-blue-500 transition">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded focus:outline-none focus:border-blue-500 transition"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-emerald-500 text-white rounded-full font-medium hover:opacity-90 transition transform hover:scale-105">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <a href="#home" class="flex items-center justify-center md:justify-start mb-2">
+                        <img src="https://res.cloudinary.com/ds8fnrk7s/image/upload/v1750510412/logo_new_jwb8qz.png" alt="Miryala Mani Prasoon" class="w-8 h-8 object-contain rounded-full mr-2 bg-white p-1 shadow">
+                        <span class="text-lg font-bold text-white">Mani Prasoon</span>
+                    </a>
+                    <p class="mt-2 text-sm">© 2025 Miryala Mani Prasoon. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#home" class="hover:text-white transition">Home</a>
+                    <a href="#about" class="hover:text-white transition">About</a>
+                    <a href="#projects" class="hover:text-white transition">Projects</a>
+                    <a href="#resume" class="hover:text-white transition">Resume</a>
+                    <a href="#contact" class="hover:text-white transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Typewriter effect cycling through all names
+        const typewriterElement = document.querySelector('.typewriter');
+        const texts = [
+            "AI/ML Engineer",
+            "Web Developer",
+            "Cybersecurity Enthusiast",
+            "Problem Solver"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriterLoop() {
+            const currentText = texts[textIndex];
+            if (!isDeleting) {
+                typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentText.length) {
+                    setTimeout(() => {
+                        isDeleting = true;
+                        typeWriterLoop();
+                    }, 1500);
+                } else {
+                    setTimeout(typeWriterLoop, 100);
+                }
+            } else {
+                typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(typeWriterLoop, 500);
+                } else {
+                    setTimeout(typeWriterLoop, 50);
+                }
+            }
+        }
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('-translate-y-full');
+            mobileMenuBackdrop.classList.toggle('hidden');
+        });
+        mobileMenuBackdrop.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.add('-translate-y-full');
+            mobileMenuBackdrop.classList.add('hidden');
+        });
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.add('-translate-y-full');
+                mobileMenuBackdrop.classList.add('hidden');
+            });
+        });
+
+        // Scroll to sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Animate sections on scroll
+        const sections = document.querySelectorAll('.section');
+        
+        function checkScroll() {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        // Animate skill bars on scroll
+        function animateSkills() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        }
+        
+        // Run on initial load
+        document.addEventListener('DOMContentLoaded', function() {
+            typeWriterLoop();
+            checkScroll();
+            
+            // Intersection Observer for animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Check if it's the about section to animate skills
+                        if (entry.target.id === 'about') {
+                            animateSkills();
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // THEME TOGGLE LOGIC
+            const themeToggleButtons = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')];
+            const darkIcons = [document.getElementById('theme-toggle-dark-icon'), document.getElementById('theme-toggle-dark-icon-mobile')];
+            const lightIcons = [document.getElementById('theme-toggle-light-icon'), document.getElementById('theme-toggle-light-icon-mobile')];
+
+            const particlesLightConfig = { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#3b82f6" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#10b981", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out" } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } }, "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } } }, "retina_detect": true };
+            const particlesDarkConfig = { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#a5b4fc" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#34d399", "opacity": 0.3, "width": 1 }, "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out" } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } }, "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } } }, "retina_detect": true };
+            
+            function updateIconsAndParticles() {
+                const isDark = document.documentElement.classList.contains('dark');
+                
+                darkIcons.forEach(icon => { if(icon) icon.style.display = isDark ? 'none' : 'block' });
+                lightIcons.forEach(icon => { if(icon) icon.style.display = isDark ? 'block' : 'none' });
+
+                if (document.getElementById('particles-js')) {
+                    if (window.pJSDom && window.pJSDom[0]) {
+                        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+                        window.pJSDom = [];
+                    }
+                    
+                    if (isDark) {
+                        particlesJS('particles-js', particlesDarkConfig);
+                    } else {
+                        particlesJS('particles-js', particlesLightConfig);
+                    }
+                }
+            }
+
+            themeToggleButtons.forEach(btn => {
+                if(btn) {
+                    btn.addEventListener('click', function() {
+                        // Fade out animation before redirect
+                        const overlay = document.getElementById('mode-switch-overlay');
+                        overlay.style.pointerEvents = 'auto';
+                        overlay.style.opacity = '1';
+                        setTimeout(() => {
+                            window.location.href = 'My_portfolio.html';
+                        }, 400);
+                    });
+                }
+            });
+
+            // Initial setup on load
+            updateIconsAndParticles();
+        });
+    </script>
+
+<!-- Particle Background -->
+<div id="particles-js" class="dark:bg-gray-900"></div>
+
+<!-- Particle Config Script -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  // This script is now empty as the logic is handled in the main script block above.
+</script>
+
+<!-- Fade-out overlay for mode switch -->
+<div id="mode-switch-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#111;opacity:0;pointer-events:none;z-index:9999;transition:opacity 0.4s;"></div>
+</body>
+</html>
