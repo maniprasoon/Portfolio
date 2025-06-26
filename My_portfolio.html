@@ -50,7 +50,6 @@
                 width: 42rem;
                 height: 42rem;
             }
-=======
         }
         
         :root {
@@ -115,12 +114,9 @@
         
         .typewriter {
             overflow: hidden;
-            border-right: .15em solid var(--primary);
+            border-right: none;
             white-space: nowrap;
             letter-spacing: .15em;
-            animation: 
-                typing 3.5s steps(40, end),
-                blink .75s step-end infinite;
         }
         
         @keyframes typing {
@@ -213,10 +209,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-base lg:text-lg">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="#" class="flex items-center space-x-2">
-                        <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 text-white">
-                            <span class="font-bold">MP</span>
-                        </div>
+                    <a href="#home" class="flex items-center space-x-2">
+                        <img src="https://res.cloudinary.com/ds8fnrk7s/image/upload/v1750510412/logo_new_jwb8qz.png" alt="Mani Prasoon Logo" class="w-8 h-8 object-contain rounded-full bg-white p-1 shadow">
                         <span class="text-xl font-bold text-blue-500">Mani Prasoon</span>
                     </a>
                 </div>
@@ -227,16 +221,23 @@
                     <a href="#projects" class="text-gray-700 hover:text-blue-500 transition">Projects</a>
                     <a href="#experience" class="text-gray-700 hover:text-blue-500 transition">Experience</a>
                     <a href="#contact" class="text-gray-700 hover:text-blue-500 transition">Contact</a>
+                    <button id="theme-toggle-light" type="button" class="ml-2 text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5" title="Switch to Light Mode">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zm1.414 12.364A1 1 0 107.88 16.12l-.707.707a1 1 0 001.414 1.414l.707-.707zM3 11a1 1 0 100 2H2a1 1 0 100-2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
                 </div>
                 <div class="md:hidden flex items-center">
                     <button id="menu-btn" class="text-gray-700">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
+                    <button id="theme-toggle-light-mobile" type="button" class="ml-2 text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-sm p-2.5" title="Switch to Light Mode">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zm1.414 12.364A1 1 0 107.88 16.12l-.707.707a1 1 0 001.414 1.414l.707-.707zM3 11a1 1 0 100 2H2a1 1 0 100-2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                    </button>
                 </div>
             </div>
         </div>
         <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 border-t">
+        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-black bg-opacity-40 z-40 hidden md:hidden"></div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-6 border-t fixed top-16 left-0 w-full z-50 transition-transform duration-300 transform -translate-y-full">
             <div class="flex flex-col space-y-4">
                 <a href="#home" class="text-gray-700 hover:text-blue-500 transition">Home</a>
                 <a href="#about" class="text-gray-700 hover:text-blue-500 transition">About</a>
@@ -244,6 +245,9 @@
                 <a href="#projects" class="text-gray-700 hover:text-blue-500 transition">Projects</a>
                 <a href="#experience" class="text-gray-700 hover:text-blue-500 transition">Experience</a>
                 <a href="#contact" class="text-gray-700 hover:text-blue-500 transition">Contact</a>
+                <button id="theme-toggle-light-mobile" type="button" class="mt-2 text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg text-base p-3 w-max self-center" title="Switch to Light Mode">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zm1.414 12.364A1 1 0 107.88 16.12l-.707.707a1 1 0 001.414 1.414l.707-.707zM3 11a1 1 0 100 2H2a1 1 0 100-2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                </button>
             </div>
         </div>
     </nav>
@@ -265,7 +269,7 @@
             <div class="md:w-1/2 flex justify-center">
                 <div class="relative">
                     <div class="w-64 h-64 sm:w-72 sm:h-72 md:w-78 md:h-78 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-400 to-emerald-400 flex items-center justify-center shadow-xl floating overflow-hidden">
-                        <img src="https://res.cloudinary.com/ds8fnrk7s/image/upload/v1749486690/profile_2_new_d5bivy.jpg" alt="Miryala Mani Prasoon" class="w-full h-full object-cover">
+                        <img src="https://res.cloudinary.com/ds8fnrk7s/image/upload/v1749486424/profile_2_ivlkxk.jpg" alt="Miryala Mani Prasoon" class="w-full h-full object-cover">
                     </div>
                     <div class="absolute -bottom-5 -right-5 bg-white p-3 rounded-full shadow-lg hover-scale">
                         <div class="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-white text-xl">
@@ -317,7 +321,7 @@
                                 <p class="font-medium">Miryala Mani Prasoon</p>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-500">Roll No.:</p>
+                                <p class="text-sm text-gray-500">Roll No:</p>
                                 <p class="font-medium">22881A05N8</p>
                             </div>
                             <div>
@@ -796,6 +800,20 @@
         </div>
     </section>
 
+    <!-- Resume Section -->
+    <section id="resume" class="py-20 bg-gray-50 section">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold mb-4">My <span class="text-blue-500">Resume</span></h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-emerald-500 mx-auto mb-4"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">You can view or download my latest resume below.</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <a href="https://drive.google.com/file/d/1GxHN0z-N42vsrTw3IU8R-tQjNkPZHXaP/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="mb-6 px-6 py-3 bg-blue-500 text-white rounded-full font-medium hover:bg-blue-600 transition transform hover:scale-105">View / Download Resume</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gray-900 text-white section">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -883,12 +901,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0 text-center md:text-left">
-                    <div class="flex items-center justify-center md:justify-start">
-                        <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-500 text-white mr-2">
-                            <span class="font-bold">MP</span>
-                        </div>
+                    <a href="#home" class="flex items-center justify-center md:justify-start mb-2">
+                        <img src="https://res.cloudinary.com/ds8fnrk7s/image/upload/v1750510412/logo_new_jwb8qz.png" alt="Miryala Mani Prasoon" class="w-8 h-8 object-contain rounded-full mr-2 bg-white p-1 shadow">
                         <span class="text-lg font-bold text-white">Mani Prasoon</span>
-                    </div>
+                    </a>
                     <p class="mt-2 text-sm">© 2025 Miryala Mani Prasoon. All rights reserved.</p>
                 </div>
                 <div class="flex space-x-6">
@@ -902,7 +918,7 @@
     </footer>
 
     <script>
-        // Typewriter effect
+        // Typewriter effect cycling through all names
         const typewriterElement = document.querySelector('.typewriter');
         const texts = [
             "AI/ML Engineer",
@@ -914,36 +930,53 @@
         let charIndex = 0;
         let isDeleting = false;
 
-        function typeWriter() {
+        function typeWriterLoop() {
             const currentText = texts[textIndex];
-            
             if (!isDeleting) {
                 typewriterElement.textContent = currentText.substring(0, charIndex + 1);
                 charIndex++;
-                
                 if (charIndex === currentText.length) {
-                    isDeleting = true;
-                    setTimeout(typeWriter, 2000);
+                    setTimeout(() => {
+                        isDeleting = true;
+                        typeWriterLoop();
+                    }, 1500);
                 } else {
-                    setTimeout(typeWriter, 100);
+                    setTimeout(typeWriterLoop, 100);
                 }
             } else {
                 typewriterElement.textContent = currentText.substring(0, charIndex - 1);
                 charIndex--;
-                
                 if (charIndex === 0) {
                     isDeleting = false;
                     textIndex = (textIndex + 1) % texts.length;
-                    setTimeout(typeWriter, 500);
+                    setTimeout(typeWriterLoop, 500);
                 } else {
-                    setTimeout(typeWriter, 50);
+                    setTimeout(typeWriterLoop, 50);
                 }
             }
         }
 
         // Mobile menu toggle
-        document.getElementById('menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+        menuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('-translate-y-full');
+            mobileMenuBackdrop.classList.toggle('hidden');
+        });
+        mobileMenuBackdrop.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.add('-translate-y-full');
+            mobileMenuBackdrop.classList.add('hidden');
+        });
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.add('-translate-y-full');
+                mobileMenuBackdrop.classList.add('hidden');
+            });
         });
 
         // Scroll to sections
@@ -994,7 +1027,7 @@
         
         // Run on initial load
         document.addEventListener('DOMContentLoaded', function() {
-            typeWriter();
+            typeWriterLoop();
             checkScroll();
             
             // Intersection Observer for animations
@@ -1016,66 +1049,195 @@
             sections.forEach(section => {
                 observer.observe(section);
             });
+
+            // Add event listeners for the new light mode buttons
+            const themeToggleLightButtons = [document.getElementById('theme-toggle-light'), document.getElementById('theme-toggle-light-mobile')];
+            themeToggleLightButtons.forEach(btn => {
+                if(btn) {
+                    btn.addEventListener('click', function() {
+                        // Fade out animation before redirect
+                        const overlay = document.getElementById('mode-switch-overlay');
+                        overlay.style.pointerEvents = 'auto';
+                        overlay.style.opacity = '1';
+                        setTimeout(() => {
+                            window.location.href = 'My portfolio ver 1.html';
+                        }, 400);
+                    });
+                }
+            });
         });
     </script>
 
-<!-- Particle Background -->
-<div id="particles-js"></div>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
 
-<!-- Particle Config Script -->
-<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-<script>
-  particlesJS("particles-js", {
-    "particles": {
-      "number": {
-        "value": 80,
-        "density": { "enable": true, "value_area": 800 }
-      },
-      "color": { "value": "#3b82f6" },
-      "shape": {
-        "type": "circle",
-        "stroke": { "width": 0, "color": "#000000" },
-        "polygon": { "nb_sides": 5 }
-      },
-      "opacity": {
-        "value": 0.5,
-        "random": false,
-        "anim": { "enable": false }
-      },
-      "size": {
-        "value": 3,
-        "random": true,
-        "anim": { "enable": false }
-      },
-      "line_linked": {
-        "enable": true,
-        "distance": 150,
-        "color": "#10b981",
-        "opacity": 0.4,
-        "width": 1
-      },
-      "move": {
-        "enable": true,
-        "speed": 3,
-        "direction": "none",
-        "random": false,
-        "straight": false,
-        "out_mode": "out"
+    <!-- Particle Config Script -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS("particles-js", {
+        "particles": {
+          "number": {
+            "value": 80,
+            "density": { "enable": true, "value_area": 800 }
+          },
+          "color": { "value": "#3b82f6" },
+          "shape": {
+            "type": "circle",
+            "stroke": { "width": 0, "color": "#000000" },
+            "polygon": { "nb_sides": 5 }
+          },
+          "opacity": {
+            "value": 0.5,
+            "random": false,
+            "anim": { "enable": false }
+          },
+          "size": {
+            "value": 3,
+            "random": true,
+            "anim": { "enable": false }
+          },
+          "line_linked": {
+            "enable": true,
+            "distance": 150,
+            "color": "#10b981",
+            "opacity": 0.4,
+            "width": 1
+          },
+          "move": {
+            "enable": true,
+            "speed": 3,
+            "direction": "none",
+            "random": false,
+            "straight": false,
+            "out_mode": "out"
+          }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": { "enable": true, "mode": "repulse" },
+            "onclick": { "enable": true, "mode": "push" }
+          },
+          "modes": {
+            "repulse": { "distance": 100, "duration": 0.4 },
+            "push": { "particles_nb": 4 }
+          }
+        },
+        "retina_detect": true
+      });
+    </script>
+
+    <!-- Fade-out overlay for mode switch -->
+    <div id="mode-switch-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#fff;opacity:0;pointer-events:none;z-index:9999;transition:opacity 0.4s;"></div>
+
+    <!-- Responsive improvements for mobile -->
+    <style>
+    @media (max-width: 640px) {
+      nav {
+        height: 56px !important;
+        min-height: 56px !important;
       }
-    },
-    "interactivity": {
-      "detect_on": "canvas",
-      "events": {
-        "onhover": { "enable": true, "mode": "repulse" },
-        "onclick": { "enable": true, "mode": "push" }
-      },
-      "modes": {
-        "repulse": { "distance": 100, "duration": 0.4 },
-        "push": { "particles_nb": 4 }
+      .h-16 { height: 56px !important; }
+      .max-w-7xl, .max-w-4xl, .max-w-md {
+        max-width: 100vw !important;
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
       }
-    },
-    "retina_detect": true
-  });
-</script>
+      .hero-image, .about-image, .w-64, .h-64, .w-72, .h-72, .w-78, .h-78, .w-96, .h-96 {
+        width: 8rem !important;
+        height: 8rem !important;
+        min-width: 8rem !important;
+        min-height: 8rem !important;
+        margin: 0 auto !important;
+      }
+      .flex, .grid, .md\:flex-row, .lg\:flex-row {
+        flex-direction: column !important;
+        grid-template-columns: 1fr !important;
+      }
+      .md\:w-1\/2, .lg\:w-1\/2, .md\:w-2\/3, .lg\:w-1\/3 {
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .px-4, .px-6, .px-8 {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+      }
+      .py-20, .py-32 {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+      }
+      .mb-16, .mb-12, .mb-8, .mb-4 {
+        margin-bottom: 1rem !important;
+      }
+      h1, h2, h3 {
+        font-size: 1.25rem !important;
+        line-height: 1.3 !important;
+      }
+      .text-4xl, .text-5xl, .text-6xl {
+        font-size: 1.5rem !important;
+      }
+      .text-2xl, .text-3xl {
+        font-size: 1.125rem !important;
+      }
+      .text-lg {
+        font-size: 1rem !important;
+      }
+      .text-base {
+        font-size: 0.95rem !important;
+      }
+      .card, .bg-white, .p-6, .p-4, .rounded-xl, .rounded-lg, .shadow-md, .shadow-lg {
+        padding: 1rem !important;
+        border-radius: 0.75rem !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .rounded-full {
+        border-radius: 9999px !important;
+      }
+      .w-full {
+        width: 100% !important;
+      }
+      .h-full {
+        height: auto !important;
+      }
+      .space-x-4, .gap-8, .gap-6, .gap-4 {
+        gap: 0.5rem !important;
+      }
+      .form, form, input, textarea, select, button {
+        width: 100% !important;
+        font-size: 1rem !important;
+        min-height: 2.5rem !important;
+        margin-bottom: 0.75rem !important;
+      }
+      button, .rounded-full, .rounded-lg, .rounded-xl {
+        border-radius: 0.75rem !important;
+        min-height: 2.5rem !important;
+      }
+      .floating, .absolute, .relative {
+        position: static !important;
+        transform: none !important;
+        margin: 0 auto !important;
+      }
+      .overflow-hidden, .overflow-x-hidden {
+        overflow-x: hidden !important;
+      }
+      .animated-bg, #particles-js {
+        display: none !important;
+      }
+      .section {
+        min-width: 0 !important;
+        max-width: 100vw !important;
+      }
+      .footer, footer {
+        font-size: 0.95rem !important;
+        padding: 1rem 0.5rem !important;
+        text-align: center !important;
+      }
+    }
+    </style>
 </body>
 </html>
